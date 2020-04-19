@@ -26,17 +26,25 @@ public class Prueba {
 
 		List<List<Numero>> m =matriz.getMatriz();
 		
-		List<List<Numero>> m2=	m.suma(matriz2);
-		int cont = 1;
-		for (int i = 0; i <= m.size()-1; i++) {
-			
-			 System.out.println("Columna: "+ cont);
-			 for (int j = 0; j <m.get(i).size()-1; j++) {
-				 NumeroEntero n = (NumeroEntero) m.get(i).get(j);
-				 System.out.println("elemento :"+n.getValor());
-				
+		List<List<Numero>> m2=	matriz.suma(matriz2.getMatriz());
+		
+		for (int i = 0; i < m2.size(); i++) {
+			System.out.println("corte");
+			for (int j = 0; j < m2.get(i).size(); j++) {
+			NumeroEntero miNumero =	(NumeroEntero) m2.get(i).get(j);
+			System.out.println(miNumero.getValor());
 			}
-			 cont++;
 		}
+//		int cont = 1;
+//		for (int i = 0; i <= m.size()-1; i++) {
+//			
+//			 System.out.println("Columna: "+ cont);
+//			 for (int j = 0; j <m.get(i).size()-1; j++) {
+//				 NumeroEntero n = (NumeroEntero) m.get(i).get(j);
+//				 System.out.println("elemento :"+n.getValor());
+//				
+//			}
+//			 cont++;
+//		}
 	}
 }
