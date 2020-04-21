@@ -13,36 +13,42 @@ public class NumeroEntero extends Numero {
 	@Override
 	public Numero sumar(Numero n) {
 		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor()+valor2);
+		this.setValor(this.getValor() + valor2);
 		return this;
 	}
-
-
 
 	@Override
 	public Numero resta(Numero n) {
 		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor()-valor2);
+		this.setValor(this.getValor() - valor2);
 		return this;
 	}
 
 	@Override
 	public Numero multliplicarPor(Numero n) {
 		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor()-valor2);
+		this.setValor(this.getValor() * valor2);
 		return this;
 	}
 
 	@Override
 	public Numero dividirPor(Numero n) {
-		// TODO Auto-generated method stub
-		return null;
+		NumeroEntero divisor = (NumeroEntero) n;
+		Integer val = this.valor / divisor.getValor();
+		this.setValor(val);
+		return this;
 	}
+
 	public Integer getValor() {
 		return valor;
 	}
 
 	public void setValor(Integer valor) {
 		this.valor = valor;
+	}
+
+	@Override
+	public String toString() {
+		return "El valor es " + this.valor;
 	}
 }

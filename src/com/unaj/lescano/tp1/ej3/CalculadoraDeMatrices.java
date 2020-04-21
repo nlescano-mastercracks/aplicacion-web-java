@@ -7,117 +7,103 @@ public class CalculadoraDeMatrices {
 
 	Numero valor[][];
 
-	List<List<Numero>> matriz;
+////	List<List<Numero>> matriz;
+//
+//	public CalculadoraDeMatrices(Integer fila, Integer columna) {
+//
+//		this.valor = new Numero[fila][columna];
+//
+////		this.buildMatriz(fila, columna);
+//
+//	}
 
-	public CalculadoraDeMatrices(Integer fila, Integer columna) {
-
-		this.valor = new Numero[fila][columna];
-
-		this.buildMatriz(fila, columna);
-
+	public CalculadoraDeMatrices(Numero[][] matriz) {
+		this.valor = matriz;
 	}
 
-	public List<List<Numero>> suma(List<List<Numero>> matriz) {
+	public CalculadoraDeMatrices suma(Numero[][] matriz) {
 
-		List<List<Numero>> matrizFinal = new ArrayList<List<Numero>>();
-		
 		try {
 			if (!this.validate(matriz))
 				throw new Exception("La operacion no es posible Orden distinto");
 
-			for (int i = 0; i < this.matriz.size(); i++) {
-				List<Numero> auxMatriz2 = matriz.get(i);
-				List<Numero> auxMatriz = new ArrayList<Numero>();
-
-				for (int j = 0; j < this.matriz.get(i).size(); j++) {
-					Numero numMatriz2 = auxMatriz2.get(j);
-					Numero numMatriz1 = this.matriz.get(i).get(j);
-					auxMatriz.add(numMatriz1.sumar(numMatriz2));
+			for (int i = 0; i < this.valor.length; i++) {
+				for (int j = 0; j < this.valor[i].length; j++) {
+					this.valor[i][j].sumar(matriz[i][j]);
 				}
-				matrizFinal.add(auxMatriz);
 			}
 		} catch (Exception e) {
 		}
-		return matrizFinal;
+		return this;
 
 	}
 
-	public List<List<Numero>> restar(List<List<Numero>> matriz) {
+	public CalculadoraDeMatrices restar(Numero[][] matriz) {
 
-		List<List<Numero>> matrizFinal = new ArrayList<List<Numero>>();
-		
 		try {
 			if (!this.validate(matriz))
 				throw new Exception("La operacion no es posible Orden distinto");
 
-			for (int i = 0; i < this.matriz.size(); i++) {
-				List<Numero> auxMatriz2 = matriz.get(i);
-				List<Numero> auxMatriz = new ArrayList<Numero>();
-
-				for (int j = 0; j < this.matriz.get(i).size(); j++) {
-					Numero numMatriz2 = auxMatriz2.get(j);
-					Numero numMatriz1 = this.matriz.get(i).get(j);
-					auxMatriz.add(numMatriz1.resta(numMatriz2));
+			for (int i = 0; i < this.valor.length; i++) {
+				for (int j = 0; j < this.valor[i].length; j++) {
+					this.valor[i][j].sumar(matriz[i][j]);
 				}
-				matrizFinal.add(auxMatriz);
 			}
 		} catch (Exception e) {
 		}
-		return matrizFinal;
+		return this;
 
 	}
 
 	public Numero traza(Numero num) {
+		try {
+			if (!this.isSquared())
+				throw new Exception("La operacion no es posible la matriz no es cuadrada");
 
-		for (int i = 0; i < this.matriz.size(); i++) {
+			for (int i = 0; i < this.matriz.size(); i++) {
 
-			for (int j = 0; j < this.matriz.get(i).size(); j++) {
-				if (i == j)
-					num.sumar(this.getMatriz().get(i).get(j));
+				for (int j = 0; j < this.matriz.get(i).size(); j++) {
+					if (i == j)
+						num.sumar(this.getMatriz().get(i).get(j));
+				}
 			}
+		} catch (Exception e) {
 		}
 		return num;
 	}
-	
-	public Numero determinante(Numero num) {
 
-		for (int i = 0; i < this.matriz.size(); i++) {
+//	public Numero determinante(Numero num) {
+//
+//		try {
+//			if (!this.isSquared())
+//				throw new Exception("La operacion no es posible la matriz no es cuadrada");
+//
+//			for (int i = 0; i < this.matriz.size(); i++) {
+//
+//				for (int j = 0; j < this.matriz.get(i).size(); j++) {
+//					if (i == j)
+//						num.sumar(this.getMatriz().get(i).get(j));
+//				}
+//			}
+//
+//		} catch (Exception e) {
+//		}
+//		return num;
+//	}
 
-			for (int j = 0; j < this.matriz.get(i).size(); j++) {
-				if (i == j)
-					num.sumar(this.getMatriz().get(i).get(j));
-			}
-		}
-		return num;
-	}
-	
-	
-	
-	
+	private Boolean validate(Numero[][] matriz) {
 
-	private Boolean validate(List<List<Numero>> matriz) {
-
-		List<Numero> column1 = matriz.get(0);
-		List<Numero> column2 = this.getMatriz().get(0);
-		if (matriz.size() == this.getMatriz().size() && column1.size() == column2.size())
+		if (matriz.length == this.valor.length && matriz[0].length == this.valor[0].length)
 			return true;
 
 		return false;
 	}
 
-	private void buildMatriz(Integer fila, Integer columna) {
-		this.matriz = new ArrayList<List<Numero>>();
-		for (Integer i = 0; i <= columna; i++) {
-			this.addElement(matriz, fila);
-		}
-	}
+	private Boolean isSquared() {
+		if (this.valor.length == this.valor[0].length)
+			return true;
 
-	public void addElement(List<List<Numero>> matriz, Integer fila) {
-		List list = new ArrayList<Number>();
-		for (int i = 0; i < fila; i++) {
-			list.add(new NumeroEntero(1));
-		}
-		matriz.add(list);
+		return false;
 	}
 
 	public Numero[][] getValor() {
@@ -135,4 +121,61 @@ public class CalculadoraDeMatrices {
 	public void setMatriz(List<List<Numero>> matriz) {
 		this.matriz = matriz;
 	}
+
+//	public Integer Determinante(int i, List<List<NumeroEntero>> matris) {
+//
+////	      if (matriz.length==2) 
+////	      {
+////	    	  Integer deter=matriz[0][0]*matriz[1][1]-matriz[0][1]*matriz[1][0];       
+////	        
+////	        return  deter;
+////	      }
+//
+////	      else
+////	      {
+//		Integer deter = 0;
+//
+//		for (int j = 0; j < matris.size(); j++) {
+//			NumeroEntero numero = (NumeroEntero) matris.get(i).get(j);
+//			List<List<NumeroEntero>> temp = this.SubMatriz(i, j, matris);
+//
+//			deter = (int) (deter + Math.pow(-1, i + j) * numero.getValor() * this.Determinante(0, temp));
+//
+//		}
+//
+//		return deter;
+////	      }
+//
+//	}
+//
+//	// claculo de submatriz eliminado i, j
+//
+//	private List<List<NumeroEntero>> SubMatriz(int i, int j, List<List<NumeroEntero>> matriz) {
+//		new ArrayList<List<NumeroEntero>>();
+//		List<List<NumeroEntero>>  temp = new ArrayList<List<NumeroEntero>>(); new double[matriz.length - 1][matriz.length - 1];
+//
+//		int count1 = 0;
+//		int count2 = 0;
+//
+//		for (int k = 0; k < matriz.length; k++) {
+//			if (k != i) {
+//				count2 = 0;
+//				for (int l = 0; l < matriz.length; l++) {
+//					if (l != j) {
+//						temp[count1][count2] = matriz[k][l];
+//
+//						count2++;
+//					}
+//
+//				}
+//
+//				count1++;
+//			}
+//
+//		}
+//
+//		return temp;
+//
+//	}
+
 }
