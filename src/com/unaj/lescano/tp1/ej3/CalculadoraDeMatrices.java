@@ -60,11 +60,11 @@ public class CalculadoraDeMatrices {
 			if (!this.isSquared())
 				throw new Exception("La operacion no es posible la matriz no es cuadrada");
 
-			for (int i = 0; i < this.matriz.size(); i++) {
+			for (int i = 0; i < this.valor.length; i++) {
 
-				for (int j = 0; j < this.matriz.get(i).size(); j++) {
+				for (int j = 0; j < this.valor[i].length; j++) {
 					if (i == j)
-						num.sumar(this.getMatriz().get(i).get(j));
+						num.sumar(this.valor[i][j]);
 				}
 			}
 		} catch (Exception e) {
@@ -114,13 +114,13 @@ public class CalculadoraDeMatrices {
 		this.valor = valor;
 	}
 
-	public List<List<Numero>> getMatriz() {
-		return matriz;
-	}
-
-	public void setMatriz(List<List<Numero>> matriz) {
-		this.matriz = matriz;
-	}
+//	public List<List<Numero>> getMatriz() {
+//		return matriz;
+//	}
+//
+//	public void setMatriz(List<List<Numero>> matriz) {
+//		this.matriz = matriz;
+//	}
 
 //	public Integer Determinante(int i, List<List<NumeroEntero>> matris) {
 //
