@@ -2,53 +2,41 @@ package com.unaj.lescano.tp1.ej3;
 
 public class NumeroEntero extends Numero {
 
-	private Integer valor;
 
-	public NumeroEntero(Integer valor) {
+	public NumeroEntero(Double valor) {
 
-		this.valor = valor;
+		this.num = valor;
 
 	}
 
 	@Override
 	public Numero sumar(Numero n) {
-		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor() + valor2);
+		this.setNum(this.getNum() + n.getNum());
 		return this;
 	}
 
 	@Override
 	public Numero resta(Numero n) {
-		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor() - valor2);
+		this.setNum(this.getNum() - n.getNum());
 		return this;
 	}
 
 	@Override
 	public Numero multliplicarPor(Numero n) {
-		Integer valor2 = ((NumeroEntero) n).getValor();
-		this.setValor(this.getValor() * valor2);
+		this.setNum(this.getNum() * n.getNum());
 		return this;
 	}
 
 	@Override
 	public Numero dividirPor(Numero n) {
-		NumeroEntero divisor = (NumeroEntero) n;
-		Integer val = this.valor / divisor.getValor();
-		this.setValor(val);
+		Double val = this.getNum() / n.getNum();
+		this.setNum(val);
 		return this;
 	}
 
-	public Integer getValor() {
-		return valor;
-	}
-
-	public void setValor(Integer valor) {
-		this.valor = valor;
-	}
 
 	@Override
 	public String toString() {
-		return "El valor es " + this.valor;
+		return "El valor es " + this.num;
 	}
 }
